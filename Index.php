@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculatrice Prêt Immobilier</title>
     <link rel="stylesheet" href="Style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,32 +16,32 @@
         <div class="calculator">
             <h2>Calculatrice prêt immobilier</h2>
             <div class="form-group">
-                <label for="amount">Montant emprunté</label>
+                <label for="montant">Montant emprunté</label>
                 <div class="input-container">
-                    <input type="text" id="amount" placeholder="100 000">
+                    <input type="text" id="montant" placeholder="100 000">
                     <span>€</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="rate">Taux nominal</label>
+                <label for="taux">Taux nominal</label>
                 <div class="input-container">
-                    <input type="text" id="rate" placeholder="1.2">
+                    <input type="text" id="taux" placeholder="1.2">
                     <span>%</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="duration">Durée de remboursement</label>
+                <label for="duree">Durée de remboursement</label>
                 <div class="input-container">
-                    <input type="text" id="duration" placeholder="15">
+                    <input type="text" id="duree" placeholder="15">
                     <span>an(s)</span>
                 </div>
             </div>
             <p id="error-message" class="error-message"></p>
-            <button onclick="validateForm()">Calculer</button>
+            <button type="button" onclick="validateForm()">Calculer</button>
         </div>
         <div class="tableauA">
             <h2>Tableau d’amortissement</h2>
-                <table>
+                <table id="amortissement-table">
                     <thead>
                         <tr>
                             <th>Mois</th>
@@ -51,43 +53,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>100 000,00€</td>
-                            <td>607,33€</td>
-                            <td>100,00€</td>
-                            <td>507,33€</td>
-                            <td>99 492,67€</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>99 492,67€</td>
-                            <td>607,33€</td>
-                            <td>99,49€</td>
-                            <td>507,84€</td>
-                            <td>98 984,83€</td>
-                        </tr>
-                        <!-- Autres lignes du tableau -->
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                        </tr>
-                        <tr>
-                            <td>180</td>
-                            <td>606,73€</td>
-                            <td>607,33€</td>
-                            <td>0,61€</td>
-                            <td>606,73€</td>
-                            <td>0,00€</td>
-                        </tr>
                     </tbody>
                 </table>
-                <button class="download-btn">Télécharger en PDF</button>
-            </div>
+                <button class="download-btn" onclick="genererPDF()">Télécharger en PDF</button>
+        </div>
     </div>
     <script src="Calculette.js"></script>
 </body>

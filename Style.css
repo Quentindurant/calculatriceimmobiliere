@@ -24,18 +24,15 @@ body {
     margin: auto;
     margin-bottom: 100px;
     max-width: 800px;
-
 }
 
-.tableauA{
-
+.tableauA {
     background-color: #fff;
     padding: 40px 100px;
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     margin: auto;
     max-width: 800px;
-
 }
 
 h2 {
@@ -69,8 +66,6 @@ h2 {
     opacity: 1;
 }
 
-
-
 .input-container span {
     width: 50px;
     text-align: center;
@@ -94,7 +89,6 @@ button:hover {
     background-color: #457b9d;
 }
 
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -117,4 +111,6 @@ th {
     margin-top: 10px;
 }
 
-
+#invalid {
+    border: 2px solid orange;
+}
