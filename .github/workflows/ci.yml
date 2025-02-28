@@ -23,8 +23,27 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
+            echo "Début du déploiement..."
             cd /var/www/html/calculimmo.quentindurant.com
-            sudo chown -R $USER:www-data .
-            sudo git config --global --add safe.directory /var/www/html/calculimmo.quentindurant.com
-            sudo -u www-data git pull
+            
+            echo "Configuration de Git..."
+            git config --global --add safe.directory /var/www/html/calculimmo.quentindurant.com
+            
+            echo "Configuration des permissions..."
+            sudo -u www-data git config --global --add safe.directory /var/www/html/calculimmo.quentindurant.com
             sudo chown -R www-data:www-data .
+            sudo chmod -R 775 .
+            
+            echo "Nettoyage des changements locaux..."
+            sudo -u www-data git reset --hard
+            sudo -u www-data git clean -fd
+            
+            echo "Pull des modifications..."
+            sudo -u www-data git fetch origin main
+            sudo -u www-data git checkout main
+            sudo -u www-data git pull origin main
+            
+            echo "Vérification finale..."
+            git status
+            
+            echo "Déploiement terminé"
