@@ -11,8 +11,10 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Git Safe Directory
-        run: git config --global --add safe.directory '*'
+      - name: Configure Git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory /github/workspace
       
       - name: Push to server
         uses: appleboy/ssh-action@v0.1.10
@@ -21,6 +23,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd ${{ secrets.PROJECT_PATH }}
-            git config --global --add safe.directory '*'
-            sudo git pull
+            cd /var/www/html/calculimmo.quentindurant.com
+            sudo chown -R $USER:www-data .
+            sudo git config --global --add safe.directory /var/www/html/calculimmo.quentindurant.com
+            sudo -u www-data git pull
+            sudo chown -R www-data:www-data .
