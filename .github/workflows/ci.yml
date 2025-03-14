@@ -22,6 +22,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
           script: |
             echo "Début du déploiement..."
             cd /var/www/html/calculimmo.quentindurant.com
